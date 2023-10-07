@@ -13,23 +13,20 @@ public class UserDaoImpl implements UserDao {
     private EntityManager entityManager;
 
     @Override
-    public List<User> index() {
+    public List<User> findAll() {
         return entityManager.createQuery("SELECT user FROM User user", User.class).getResultList();
     }
     @Override
-    public User showUsers(Long id) {
+    public User showUser(Long id) {
         return entityManager.find(User.class, id);
     }
     @Override
-    public void saveUsers(User user) {
+    public void saveUser(User user) {
         entityManager.persist(user);
     }
     @Override
-    public void updateUser(Long id, User updatedUser) {
+    public void updateUser(User updatedUser) {
         User user = entityManager.merge(updatedUser);
-        user.setName(updatedUser.getName());
-        user.setSurname(updatedUser.getSurname());
-        user.setAge(updatedUser.getAge());
         entityManager.flush();
     }
     @Override

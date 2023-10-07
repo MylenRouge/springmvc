@@ -18,6 +18,7 @@ public class User implements Serializable {
     private String surname;
     @Column(name = "age")
     private Short age;
+
     public Long getId() {
         return id;
     }
